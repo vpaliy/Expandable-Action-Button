@@ -1,4 +1,4 @@
-# FAB-Toolbar-Example
+# Expandable Action Button
 
 # How does it work? #
 
@@ -21,13 +21,53 @@ When the user presses the button, it goes down and inflates another layout which
 
 In order to imitate motion of the button, when it goes down or up, I used a curved motion concept, you can check it out in this [video](https://www.youtube.com/watch?v=JVGg4zPRHNE).
 
+## How to use the ExpandableButtonView? ##
+
+First of all, import the expandable-button module into your project, then follow these steps:
+
+1. Specify the view in your XML file:
+    ```xml
+     `<com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView
+        android:id="@+id/expandableButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:button_icon="@android:drawable/ic_menu_share"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView>
+    ```
+    You need to specify the margins of the button.
+    Also note that `layout_width` and `layout_height` should be `wrap_content`.<br>
+    You can specify the width and height of the button by using:
+     `app:button_width` and `app:button_height`
+    
+2. Then go ahead and add some buttons, for example:
+  ```java
+  
+     ImageButton imageButton=new ImageButton(context);
+     imageButton.setImageResource(R.id.image);
+     imageButton.setOnClickListener(action);
+     expandableButtonView.addToolbarItem(imageButton);
+     
+  ```
+3. So far I have written only a listener for a `RecyclerView` so it works only with that.
+  
+  ```java
+     recyclerView.addOnScrollListener(new ScrollListener(expandableButtonView));
+  ```
+  However, there is a method `removeBottomToolbar` which folds the toolbar back, 
+  so you use that every time you need to return to the button view.
 
 ## License ##
 
 ``````
 MIT License
 
-Copyright (c) 2016 Vasyl Paliy
+Copyright (c) 2017 Vasyl Paliy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
