@@ -54,6 +54,8 @@ First of all, import the expandable-button module into your project, then follow
      expandableButtonView.addToolbarItem(imageButton);
      
   ```
+  The items which have been added to the `ExpandableButtonView` will always be in the center.
+  
 3. So far I have written only a listener for a `RecyclerView` so it works only with that.
   
   ```java
