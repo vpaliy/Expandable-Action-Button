@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="design_fab_elevation">6dp</dimen>
+    <dimen name="design_fab_translation_z_pressed">6dp</dimen>
+    <dimen name="design_fab_image_size">24dp</dimen>
+    <dimen name="design_fab_size_normal">56dp</dimen>
+    <dimen name="design_fab_size_mini">40dp</dimen>
+    <dimen name="design_fab_border_width">0.5dp</dimen>
+</resources>

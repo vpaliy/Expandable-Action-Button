@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Design.FloatingActionButton" parent="android:Widget">
+        <item name="backgroundTint">?attr/colorAccent</item>
+        <item name="fabSize">auto</item>
+        <item name="elevation">6dp</item>
+        <item name="pressedTranslationZ">6dp</item>
+        <item name="rippleColor">?attr/colorControlHighlight</item>
+        <item name="borderWidth">0.5dp</item>
+
+    </style>
+
+</resources>

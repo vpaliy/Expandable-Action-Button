@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+
+    <com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView
+        android:id="@+id/expandableButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:button_icon="@android:drawable/ic_menu_share"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView>
+
+
+
+
+
+</RelativeLayout>

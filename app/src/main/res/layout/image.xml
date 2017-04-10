@@ -1,0 +1,5 @@
+<com.vpaliy.vasya.fab_toolbar_example.utils.SquareImage
+    android:id="@+id/image"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
