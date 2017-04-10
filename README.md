@@ -9,14 +9,14 @@ Moreover, this sample has implmentation of FAB animation(fading in and out) when
 When the user presses the button, it goes down and inflates another layout which contains all important stuff. You can add listeners and work with inflated layout as with plain `ViewGroup`.
 
 # Screenshot #
-![](https://github.com/vpaliyX/FAB-Toolbar-Example/blob/master/gifs/ezgif.com-video-to-gif.gif)
+![](https://github.com/vpaliyX/Expandable-Action-Button/blob/master/gifs/ezgif.com-video-to-gif.gif)
 
 ## Video [example](https://www.youtube.com/watch?v=AJ5TQtPsuY8) ##
 
 ## This is based on Google's  Material Design guidelines:##
 
-![](https://github.com/vpaliyX/FAB-Toolbar-Example/blob/master/gifs/ezgif.com-video-to-gif%20(1).gif)
-![](https://github.com/vpaliyX/FAB-Toolbar-Example/blob/master/gifs/ezgif.com-video-to-gif%20(2).gif)
+![](https://github.com/vpaliyX/Expandable-Action-Button/blob/master/gifs/ezgif.com-video-to-gif%20(1).gif)
+![](https://github.com/vpaliyX/Expandable-Action-Button/blob/master/gifs/ezgif.com-video-to-gif%20(2).gif)
 
 
 In order to imitate motion of the button, when it goes down or up, I used a curved motion concept, you can check it out in this [video](https://www.youtube.com/watch?v=JVGg4zPRHNE).
