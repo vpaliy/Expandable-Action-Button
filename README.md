@@ -63,6 +63,8 @@ First of all, import the expandable-button module into your project, then follow
   ```
   However, there is a method `removeBottomToolbar` which folds the toolbar back, 
   so you use that every time you need to return to the button view.
+  
+
 
 ## License ##
 
