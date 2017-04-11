@@ -6,7 +6,7 @@ This sample shows transforming of floating action button into a toolbar upon pre
 
 Moreover, this sample has implmentation of FAB animation(fading in and out) when the user scrolls down or upwards.
 
-When the user presses the button, it goes down and inflates another layout which contains all important stuff. You can add listeners and work with inflated layout as with plain `ViewGroup`.
+When the user presses the button, it goes down and inflates another layout which contains all important stuff. You can add listeners and work with the inflated layout as with plain `ViewGroup`.
 
 # Screenshot #
 ![](https://github.com/vpaliyX/Expandable-Action-Button/blob/master/gifs/ezgif.com-video-to-gif.gif)
