@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Expandable-Action-Button.iml" filepath="$PROJECT_DIR$/Expandable-Action-Button.iml" />
       <module fileurl="file://$PROJECT_DIR$/FAB-Toolbar-Example.iml" filepath="$PROJECT_DIR$/FAB-Toolbar-Example.iml" />
       <module fileurl="file://$PROJECT_DIR$/FAB-Toolbar-Example-master.iml" filepath="$PROJECT_DIR$/FAB-Toolbar-Example-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expandable-button/expandable-button.iml" filepath="$PROJECT_DIR$/expandable-button/expandable-button.iml" />
       <module fileurl="file://$PROJECT_DIR$/expandable-button/expandable-button.iml" filepath="$PROJECT_DIR$/expandable-button/expandable-button.iml" />
     </modules>
   </component>

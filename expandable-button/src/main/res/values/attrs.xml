@@ -7,5 +7,6 @@
         <attr name="button_color" format="color"/>
         <attr name="toolbar_color" format="color"/>
         <attr name="duration" format="integer"/>
+        <attr name="reverse_duration" format="integer"/>
     </declare-styleable>
 </resources>

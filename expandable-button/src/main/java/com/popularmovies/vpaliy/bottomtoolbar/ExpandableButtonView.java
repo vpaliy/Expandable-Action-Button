@@ -1,6 +1,7 @@
 package com.popularmovies.vpaliy.bottomtoolbar;
 
-/** Vasyl Paliy 2017
+/**
+ * Vasyl Paliy 2017
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,12 +19,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -48,7 +52,6 @@ import android.support.annotation.StyleRes;
 public class ExpandableButtonView extends FrameLayout{
 
 
-    private static final String TAG= ExpandableButtonView.class.getSimpleName();
 
     private FloatingActionButton actionButton;
     private LinearLayout toolbarLayout;
@@ -71,6 +74,7 @@ public class ExpandableButtonView extends FrameLayout{
 
     private int flag=IDLE;
     private long duration=ANIMATION_DURATION;
+    private long reverseDuration=ANIMATION_DURATION;
 
     private ObjectAnimator actionButtonAnimator;
     private Drawable fabDrawable;
@@ -94,6 +98,7 @@ public class ExpandableButtonView extends FrameLayout{
         initAttrs(attrs);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public ExpandableButtonView(@NonNull Context context, @Nullable AttributeSet attrs,
                                 @AttrRes int defStyleAttr, @StyleRes int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
@@ -122,13 +127,16 @@ public class ExpandableButtonView extends FrameLayout{
             }else if(attr==R.styleable.ExpandableButtonView_toolbar_color) {
                 setToolbarColor(array.getColor(attr, -1));
             }else if(attr==R.styleable.ExpandableButtonView_duration) {
-                setDuration(array.getInteger(attr, 300));
+                setDuration(array.getInteger(attr, 150));
+            }else if(attr==R.styleable.ExpandableButtonView_reverse_duration){
+                setReverseDuration(array.getInteger(attr,150));
             }
         }
         array.recycle();
     }
 
     private void init(Context context){
+
         actionButton=new FloatingActionButton(context);
         toolbarLayout=new LinearLayout(getContext());
         float density = getResources().getDisplayMetrics().density;
@@ -148,9 +156,16 @@ public class ExpandableButtonView extends FrameLayout{
 
         fabDrawable=actionButton.getDrawable();
         setToolbarColor(-1);
-        //
 
 
+    }
+
+    private void setReverseDuration(long duration){
+        if(duration>0){
+            this.reverseDuration=duration;
+        }else{
+            reverseDuration=ANIMATION_DURATION;
+        }
     }
 
 
@@ -199,7 +214,7 @@ public class ExpandableButtonView extends FrameLayout{
                                 animatorPath.moveTo(-deltaX,-deltaY);
                                 animatorPath.curveTo(-deltaX,actionButton.getTranslationY(),
                                         -deltaX-actionButton.getWidth()/2f,0,
-                                        actionButton.getTranslationX()-actionButton.getWidth(),0);
+                                        getLeft()/2,0);
 
 
                                 actionButtonAnimator=ObjectAnimator.ofObject(ExpandableButtonView.this,"Location",
@@ -218,9 +233,8 @@ public class ExpandableButtonView extends FrameLayout{
                                         super.onAnimationEnd(animation);
                                         flag=RUNNING;
                                         actionButton.animate()
-                                                .setListener(HOOK_UP_TOOLBAR).setDuration(duration)
+                                                .setListener(HOOK_UP_TOOLBAR).setDuration(2*duration)
                                                 .setInterpolator(new DecelerateInterpolator())
-                                                //.translationX(0f).translationY(0f) // <-- if you want to translate the fab to the center
                                                 .scaleX(SCALE_X).scaleY(SCALE_Y).start();
 
                                     }
@@ -322,19 +336,19 @@ public class ExpandableButtonView extends FrameLayout{
 
         actionButton.setVisibility(View.VISIBLE);
 
-        actionButton.animate().scaleX(1.f).scaleY(1.f).setDuration(duration/2).
+        actionButton.animate().scaleX(1.f).scaleY(1.f).setDuration(reverseDuration/2).
                 setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
                         actionButton.setImageDrawable(fabDrawable);
-                        actionButtonAnimator.setDuration(duration/2);
+                        actionButtonAnimator.setDuration(reverseDuration/2);
                         actionButtonAnimator.setInterpolator(new DecelerateInterpolator());
                         actionButtonAnimator.addListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationStart(Animator animation) {
                                 super.onAnimationStart(animation);
-                                animate().setDuration(duration/2).setListener(null).
+                                animate().setDuration(reverseDuration/2).setListener(null).
                                         setInterpolator(new DecelerateInterpolator()).
                                         translationY(-bottomMargin).start();
                             }
@@ -386,7 +400,6 @@ public class ExpandableButtonView extends FrameLayout{
         @Override
         public void onAnimationEnd(Animator animation) {
             super.onAnimationEnd(animation);
-            //here is the place to install  properties of LinearLayout (color, size, etc.)
             actionButton.setVisibility(View.INVISIBLE);
             inflateToolbarLayout();
 
