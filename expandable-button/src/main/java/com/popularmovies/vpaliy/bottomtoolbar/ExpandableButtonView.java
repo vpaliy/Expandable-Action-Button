@@ -268,7 +268,7 @@ public class ExpandableButtonView extends FrameLayout{
         }
     }
 
-    private void setLocation(PathPoint point) {
+    public void setLocation(PathPoint point) {
         actionButton.setTranslationY(point.mY);
         actionButton.setTranslationX(point.mX);
     }
