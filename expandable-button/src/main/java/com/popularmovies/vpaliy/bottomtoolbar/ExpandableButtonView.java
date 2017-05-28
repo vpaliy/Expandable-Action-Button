@@ -214,7 +214,7 @@ public class ExpandableButtonView extends FrameLayout{
                                 animatorPath.moveTo(-deltaX,-deltaY);
                                 animatorPath.curveTo(-deltaX,actionButton.getTranslationY(),
                                         -deltaX-actionButton.getWidth()/2f,0,
-                                        getLeft()/2,0);
+                                        actionButton.getTranslationX()-actionButton.getWidth(),0);
 
 
                                 actionButtonAnimator=ObjectAnimator.ofObject(ExpandableButtonView.this,"Location",
