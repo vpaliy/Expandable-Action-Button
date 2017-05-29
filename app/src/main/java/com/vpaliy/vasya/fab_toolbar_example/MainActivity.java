@@ -8,15 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.bumptech.glide.Glide;
 import com.popularmovies.vpaliy.bottomtoolbar.ButtonItem;
 import com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView;
 import com.popularmovies.vpaliy.bottomtoolbar.scroller.ScrollListener;
+import com.vpaliy.vasya.fab_toolbar_example.utils.MarginDecoration;
 import com.vpaliy.vasya.fab_toolbar_example.utils.SquareImage;
 import java.util.Arrays;
 import java.util.List;
 import butterknife.ButterKnife;
+
 import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,19 +34,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        initImageList();
+        setUI();
     }
 
 
-    private void initImageList() {
-
+    private void setUI() {
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         List<Integer> rawDrawableList = Arrays.asList(R.drawable.eleven, R.drawable.fifteen, R.drawable.five,
                 R.drawable.four, R.drawable.fourteen, R.drawable.seven, R.drawable.seventeen,
                 R.drawable.six, R.drawable.sixteen, R.drawable.ten, R.drawable.thirt, R.drawable.three, R.drawable.twelve,
                 R.drawable.two);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new GalleryAdapter(this, rawDrawableList));
+        recyclerView.addItemDecoration(new MarginDecoration(this));
         recyclerView.addOnScrollListener(new ScrollListener(expandableButtonView));
 
         ButtonItem.Builder builder=new ButtonItem.Builder(this);
@@ -81,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /* Adapter for RecyclerView */
+    @SuppressWarnings("WeakerAccess")
     public class GalleryAdapter extends
             RecyclerView.Adapter<GalleryAdapter.ImageViewHolder> {
 

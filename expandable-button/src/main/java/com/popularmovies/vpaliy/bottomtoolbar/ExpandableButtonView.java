@@ -149,7 +149,6 @@ public class ExpandableButtonView extends FrameLayout{
         params.gravity= Gravity.CENTER;
         actionButton.setLayoutParams(params);
         toolbarLayout.setGravity(Gravity.CENTER);
-        actionButton.setImageResource(android.R.drawable.ic_menu_share);
         actionButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +157,7 @@ public class ExpandableButtonView extends FrameLayout{
         });
 
         fabDrawable=actionButton.getDrawable();
+        if(fabDrawable!=null) actionButton.setImageDrawable(fabDrawable);
         setToolbarColor(-1);
 
 
@@ -454,6 +454,7 @@ public class ExpandableButtonView extends FrameLayout{
     public void setButtonIcon(int resource){
         if(resource!=-1) {
             actionButton.setImageResource(resource);
+            fabDrawable=actionButton.getDrawable();
         }
     }
 

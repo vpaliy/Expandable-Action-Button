@@ -19,7 +19,7 @@
         android:layout_alignParentRight="true"
         app:duration="175"
         android:background="@android:color/transparent"
-        app:button_icon="@android:drawable/ic_menu_share"
+        app:button_icon="@drawable/share"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
