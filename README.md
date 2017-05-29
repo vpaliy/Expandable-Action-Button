@@ -48,12 +48,21 @@ First of all, import the expandable-button module into your project, then follow
 2. Then go ahead and add some buttons, for example:
   ```java
   
-     ImageButton imageButton=new ImageButton(context);
-     imageButton.setImageResource(R.id.image);
-     imageButton.setOnClickListener(action);
-     expandableButtonView.addToolbarItem(imageButton);
+     ButtomItem item=new ButtonItem.Builder(context)
+                        .setImageResource(R.id.image)
+                        .setClickListener(listener).build();
+     expandableButtonView.addItem(item);
      
   ```
+  Or 
+ 
+  ```java
+    
+     expandableButtonView.addItem(new ButtonItem(context)
+                                  .setImageResource(R.id.image)
+                                  .setClickListener(listener));
+  ```
+  
   The items which have been added to the `ExpandableButtonView` will always be in the center.
   
 3. So far I have written only a listener for a `RecyclerView` so it works only with that.
