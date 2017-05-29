@@ -10,15 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import com.bumptech.glide.Glide;
+import com.popularmovies.vpaliy.bottomtoolbar.ButtonItem;
 import com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView;
 import com.popularmovies.vpaliy.bottomtoolbar.ScrollListener;
 import com.vpaliy.vasya.fab_toolbar_example.utils.SquareImage;
-
 import java.util.Arrays;
 import java.util.List;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,26 +48,33 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(new GalleryAdapter(this, rawDrawableList));
         recyclerView.addOnScrollListener(new ScrollListener(expandableButtonView));
 
+        ButtonItem.Builder builder=new ButtonItem.Builder(this);
+
         for (int index = 0; index < 5; index++) {
-            ImageButton imageButton = new ImageButton(this);
+            ButtonItem item;
             switch (index){
                 case 1:
-                    imageButton.setImageResource(R.drawable.ic_email_white_24dp);
+                    item=builder.setImageResource(R.drawable.ic_email_white_24dp)
+                        .build();
                     break;
                 case 2:
-                    imageButton.setImageResource(R.drawable.ic_location_on_white_24dp);
+                    item=builder.setImageResource(R.drawable.ic_location_on_white_24dp)
+                            .build();
                     break;
                 case 3:
-                    imageButton.setImageResource(R.drawable.ic_chat_white_24dp);
+                    item=builder.setImageResource(R.drawable.ic_chat_white_24dp)
+                            .build();
                     break;
                 case 4:
-                    imageButton.setImageResource(R.drawable.ic_content_copy_white_24dp);
+                    item=builder.setImageResource(R.drawable.ic_content_copy_white_24dp)
+                            .build();
                     break;
                 default:
-                    imageButton.setImageResource(R.drawable.ic_content_copy_white_24dp);
+                    item=builder.setImageResource(R.drawable.ic_content_copy_white_24dp)
+                            .build();
 
             }
-            expandableButtonView.addToolbarItem(imageButton);
+            expandableButtonView.addToolbarItem(item);
         }
 
     }
@@ -78,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
     public class GalleryAdapter extends
             RecyclerView.Adapter<GalleryAdapter.ImageViewHolder> {
 
-        /*I should have used a simple array here, in order to optimize the code */
      
         private List<Integer> imageList;
         private LayoutInflater inflater;

@@ -19,8 +19,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -47,6 +45,7 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
+import android.annotation.TargetApi;
 
 
 public class ExpandableButtonView extends FrameLayout{
@@ -56,8 +55,9 @@ public class ExpandableButtonView extends FrameLayout{
     private FloatingActionButton actionButton;
     private LinearLayout toolbarLayout;
 
-    private List<View> itemList=new LinkedList<>();
+    private List<ButtonItem> itemList=new LinkedList<>();
     private List<View> wrappedItems=new LinkedList<>();
+    private List<ExpandAnimationListener> listenerList;
 
     private final int DEFAULT_MARGIN=-1;
     private final long ANIMATION_DELAY=50;
@@ -169,6 +169,7 @@ public class ExpandableButtonView extends FrameLayout{
     }
 
 
+
     private void onButtonClick(){
         setOffContainerMargin();
         final Rect oldButtonLocation=new Rect();
@@ -273,6 +274,13 @@ public class ExpandableButtonView extends FrameLayout{
         actionButton.setTranslationX(point.mX);
     }
 
+    public void addListener(ExpandAnimationListener listener){
+        if(listener!=null){
+            if(listenerList==null) listenerList=new LinkedList<>();
+            listenerList.add(listener);
+        }
+    }
+
     private int checkAndAssign(int margin){
         switch (margin){
             case DEFAULT_MARGIN:
@@ -285,12 +293,8 @@ public class ExpandableButtonView extends FrameLayout{
     }
 
 
-    public void addToolbarItem(View...items){
-        for(View item:items) {
-            if (item instanceof ViewGroup) {
-                throw new IllegalArgumentException("Item must not be a ViewGroup");
-            }
-
+    public void addToolbarItem(ButtonItem...items){
+        for(ButtonItem item:items) {
             if(!itemList.contains(item)){
                 item.setScaleX(0);
                 item.setScaleY(0);
@@ -324,11 +328,21 @@ public class ExpandableButtonView extends FrameLayout{
         return FrameLayout.LayoutParams.class.cast(view.getLayoutParams());
     }
 
-
     public void removeBottomToolbar() {
+        if(listenerList!=null) {
+            for(int index=0;index<listenerList.size();index++){
+                listenerList.get(index).beforeButtonAnimation(itemList);
+            }
+        }
         for (int index = 0; index < toolbarLayout.getChildCount(); index++) {
             itemList.get(index).animate()
                     .scaleX(0.f).scaleY(0.f).setStartDelay(index * ANIMATION_DELAY / 2).start();
+        }
+
+        if(listenerList!=null){
+            for(int index=0;index<listenerList.size();index++){
+                listenerList.get(index).afterButtonAnimation(itemList);
+            }
         }
 
         toolbarLayout.removeAllViews();
