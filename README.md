@@ -11,7 +11,7 @@ When the user presses the button, it goes down and inflates another layout which
 # Screenshot #
 ![](https://github.com/vpaliyX/Expandable-Action-Button/blob/master/gifs/ezgif.com-video-to-gif.gif)
 
-## Video [example](https://www.youtube.com/watch?v=AJ5TQtPsuY8) ##
+## Video [example](https://www.youtube.com/watch?v=rfXL3zzjkHg&feature=youtu.be) ##
 
 ## This is based on Google's  Material Design guidelines:##
 
