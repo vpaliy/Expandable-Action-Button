@@ -17,7 +17,7 @@
         android:id="@+id/expandableButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        app:duration="200"
+        app:duration="175"
         android:background="@android:color/transparent"
         app:button_icon="@android:drawable/ic_menu_share"
         android:layout_alignParentEnd="true"

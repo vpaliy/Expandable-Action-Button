@@ -43,7 +43,7 @@ public class ButtonItem extends AppCompatImageButton{
         return this;
     }
 
-    public ButtonItem setOnClick(OnClickListener onClickListener){
+    public ButtonItem setClickListener(OnClickListener onClickListener){
         setOnClickListener(onClickListener);
         return this;
     }
@@ -76,7 +76,7 @@ public class ButtonItem extends AppCompatImageButton{
             return this;
         }
 
-        public Builder setListener(OnClickListener onClickListener){
+        public Builder setClickListener(OnClickListener onClickListener){
             this.listener=onClickListener;
             return this;
         }

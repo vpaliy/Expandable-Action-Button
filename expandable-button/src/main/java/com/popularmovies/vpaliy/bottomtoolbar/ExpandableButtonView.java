@@ -303,7 +303,7 @@ public class ExpandableButtonView extends FrameLayout{
         if(reverseButtonDelay>0) this.reverseButtonDelay = reverseButtonDelay;
     }
 
-    public void addToolbarItem(ButtonItem...items){
+    public void addItem(ButtonItem...items){
         for(ButtonItem item:items) {
             if(!itemList.contains(item)){
                 item.setScaleX(0);

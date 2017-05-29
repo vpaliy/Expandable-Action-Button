@@ -54,27 +54,27 @@ public class MainActivity extends AppCompatActivity {
             ButtonItem item;
             switch (index){
                 case 1:
-                    item=builder.setImageResource(R.drawable.ic_email_white_24dp)
-                        .build();
+                    item=builder.setImageResource(R.drawable.message)
+                            .build();
                     break;
                 case 2:
-                    item=builder.setImageResource(R.drawable.ic_location_on_white_24dp)
+                    item=builder.setImageResource(R.drawable.location)
                             .build();
                     break;
                 case 3:
-                    item=builder.setImageResource(R.drawable.ic_chat_white_24dp)
+                    item=builder.setImageResource(R.drawable.facebook)
                             .build();
                     break;
                 case 4:
-                    item=builder.setImageResource(R.drawable.ic_content_copy_white_24dp)
+                    item=builder.setImageResource(R.drawable.gmail)
                             .build();
                     break;
                 default:
-                    item=builder.setImageResource(R.drawable.ic_content_copy_white_24dp)
+                    item=builder.setImageResource(R.drawable.twitter)
                             .build();
 
             }
-            expandableButtonView.addToolbarItem(item);
+            expandableButtonView.addItem(item);
         }
 
     }
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     public class GalleryAdapter extends
             RecyclerView.Adapter<GalleryAdapter.ImageViewHolder> {
 
-     
+
         private List<Integer> imageList;
         private LayoutInflater inflater;
 
