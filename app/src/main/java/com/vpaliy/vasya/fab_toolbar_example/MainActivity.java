@@ -8,11 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+
 import com.bumptech.glide.Glide;
 import com.popularmovies.vpaliy.bottomtoolbar.ButtonItem;
 import com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView;
-import com.popularmovies.vpaliy.bottomtoolbar.ScrollListener;
+import com.popularmovies.vpaliy.bottomtoolbar.scroller.ScrollListener;
 import com.vpaliy.vasya.fab_toolbar_example.utils.SquareImage;
 import java.util.Arrays;
 import java.util.List;

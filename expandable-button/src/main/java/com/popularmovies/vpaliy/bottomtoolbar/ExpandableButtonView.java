@@ -47,9 +47,11 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.annotation.TargetApi;
 
+import static com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView.State.FINISHED;
+import static com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView.State.RUNNING;
+
 
 public class ExpandableButtonView extends FrameLayout{
-
 
 
     private FloatingActionButton actionButton;
@@ -68,17 +70,18 @@ public class ExpandableButtonView extends FrameLayout{
     private int topMargin;
     private int leftMargin;
 
-    static final int IDLE=1;
-    static final int RUNNING=0;
-    static final int FINISHED=-1;
-
-    private int flag=IDLE;
+    private State state;
     private long duration=ANIMATION_DURATION;
+    private long buttonAnimationDelay=ANIMATION_DELAY;
+    private long reverseButtonDelay=ANIMATION_DELAY;
     private long reverseDuration=ANIMATION_DURATION;
 
     private ObjectAnimator actionButtonAnimator;
     private Drawable fabDrawable;
 
+    public enum State {
+        IDLE,RUNNING,FINISHED
+    }
 
     public ExpandableButtonView(@NonNull Context context) {
         super(context);
@@ -232,7 +235,7 @@ public class ExpandableButtonView extends FrameLayout{
                                     @Override
                                     public void onAnimationEnd(Animator animation) {
                                         super.onAnimationEnd(animation);
-                                        flag=RUNNING;
+                                        state=RUNNING;
                                         actionButton.animate()
                                                 .setListener(HOOK_UP_TOOLBAR).setDuration(2*duration)
                                                 .setInterpolator(new DecelerateInterpolator())
@@ -292,6 +295,13 @@ public class ExpandableButtonView extends FrameLayout{
         }
     }
 
+    public void setButtonAnimationDelay(long buttonAnimationDelay) {
+        if(buttonAnimationDelay>0) this.buttonAnimationDelay = buttonAnimationDelay;
+    }
+
+    public void setReverseButtonDelay(long reverseButtonDelay) {
+        if(reverseButtonDelay>0) this.reverseButtonDelay = reverseButtonDelay;
+    }
 
     public void addToolbarItem(ButtonItem...items){
         for(ButtonItem item:items) {
@@ -336,7 +346,7 @@ public class ExpandableButtonView extends FrameLayout{
         }
         for (int index = 0; index < toolbarLayout.getChildCount(); index++) {
             itemList.get(index).animate()
-                    .scaleX(0.f).scaleY(0.f).setStartDelay(index * ANIMATION_DELAY / 2).start();
+                    .scaleX(0.f).scaleY(0.f).setStartDelay(index * buttonAnimationDelay/ 2).start();
         }
 
         if(listenerList!=null){
@@ -420,10 +430,10 @@ public class ExpandableButtonView extends FrameLayout{
             for(int index=0;index<toolbarLayout.getChildCount();index++) {
                 View button=itemList.get(index);
                 button.animate().scaleX(1.f).scaleY(1.f)
-                        .setStartDelay(index*ANIMATION_DELAY).start();
+                        .setStartDelay(index*reverseButtonDelay/2).start();
             }
 
-            flag=FINISHED;
+            state=FINISHED;
 
 
         }
@@ -471,11 +481,11 @@ public class ExpandableButtonView extends FrameLayout{
         }
     }
 
-    public void setFlag(int flag) {
-        this.flag = flag;
+    public void setState(State state) {
+        this.state=state;
     }
 
-    public int getFlag() {
-        return flag;
+    public State getState() {
+        return state;
     }
 }

@@ -1,4 +1,4 @@
-package com.popularmovies.vpaliy.bottomtoolbar;
+package com.popularmovies.vpaliy.bottomtoolbar.scroller;
 
 /** Vasyl Paliy 2017
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +18,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+
+import com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView.State;
+import com.popularmovies.vpaliy.bottomtoolbar.ExpandableButtonView;
 
 public class ScrollListener extends RecyclerView.OnScrollListener {
 
@@ -39,11 +42,11 @@ public class ScrollListener extends RecyclerView.OnScrollListener {
         super.onScrollStateChanged(recyclerView, newState);
         if (RecyclerView.SCROLL_STATE_IDLE == newState || RecyclerView.SCROLL_STATE_SETTLING == newState) {
             if (Math.abs(offsetY) >= LIMIT) {
-                if (expandableButton.getFlag() ==ExpandableButtonView.FINISHED) {
+                if (expandableButton.getState() == ExpandableButtonView.State.FINISHED) {
                     expandableButton.removeBottomToolbar();
-                    expandableButton.setFlag(ExpandableButtonView.IDLE);
+                    expandableButton.setState(State.IDLE);
                     hasStopped = false;
-                } else if (hasStopped && expandableButton.getFlag() == ExpandableButtonView.IDLE) {
+                } else if (hasStopped && expandableButton.getState() == State.IDLE) {
                     if (expandableButton.getScaleX() > 0f) {
                         expandableButton.setClickable(false);
                         expandableButton.animate().setInterpolator(new AccelerateInterpolator())
