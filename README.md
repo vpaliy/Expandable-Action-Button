@@ -73,6 +73,32 @@ First of all, import the expandable-button module into your project, then follow
   However, there is a method `removeBottomToolbar` which folds the toolbar back, 
   so you use that every time you need to return to the button view.
   
+  
+## How to download? ##
+
+### Step 1 ###  
+
+Add it in your root build.gradle at the end of repositories:
+
+``` gradle
+allprojects {
+  repositories {
+     maven { url 'https://jitpack.io' }
+  }
+}
+  
+```
+### Step 2 ###
+
+Add the dependency
+
+``` gradle
+dependencies {
+	compile 'com.github.vpaliyX:Expandable-Action-Button:v1.0'
+}
+
+```
+You're good to go!
 
 
 ## License ##
